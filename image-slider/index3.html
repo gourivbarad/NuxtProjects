@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="h-screen w-screen w-max bg-rose-300 flex justify-center items-center relative p-8"
+    >
+      <a href="#"
+        ><div
+          class="absolute bottom-1/2 left-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+          id="prev"
+          onclick="next('prev')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="3em"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM231 127c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-71 71L376 232c13.3 0 24 10.7 24 24s-10.7 24-24 24l-182.1 0 71 71c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L119 273c-9.4-9.4-9.4-24.6 0-33.9L231 127z"
+            />
+          </svg>
+        </div>
+        <div
+          class="absolute bottom-1/2 right-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+          id="next"
+          onclick="next('next')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="3em"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM281 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L136 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l182.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L393 239c9.4 9.4 9.4 24.6 0 33.9L281 385z"
+            />
+          </svg></div
+      ></a>
+      <div id="slider">
+        <div class="w-full p-2 bg-white" style="height: 700px">
+          <img
+            src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*tECdbglhYEPiDOc5.jpg"
+            class="w-full h-full"
+            id="img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var img = document.getElementById("img");
+      let currentid = 0;
+      const arr = [
+        "https://miro.medium.com/v2/resize:fit:828/format:webp/0*tECdbglhYEPiDOc5.jpg",
+        "https://images.pexels.com/photos/1374125/pexels-photo-1374125.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/1034584/pexels-photo-1034584.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/707579/pexels-photo-707579.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2873951/pexels-photo-2873951.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/4906522/pexels-photo-4906522.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/2705740/pexels-photo-2705740.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://images.pexels.com/photos/3201761/pexels-photo-3201761.jpeg?auto=compress&cs=tinysrgb&w=600",
+      ];
+      function next(i) {
+        if (i === "next") {
+          currentid++;
+          currentid = currentid % arr.length === 0 ? 0 : currentid;
+          img.src = arr[currentid];
+        } else if (i === "prev") {
+          currentid--;
+          currentid = currentid == -1 ? arr.length - 1 : currentid;
+          img.src = arr[currentid];
+        }
+      }
+    </script>
+  </body>
+</html>

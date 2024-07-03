@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Randam Jokes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="bg-black h-screen w-screen flex flex-col justify-center items-center"
+    >
+      <div>
+        <p class="text-yellow-600 font-extrabold text-center text-7xl">
+          Hey!<br />Getting Bored
+        </p>
+        <br />
+      </div>
+      <div>
+        <p class="text-orange-300 font-extrabold text-center text-5xl">
+          Let's take break
+        </p>
+        <br /><br />
+      </div>
+      <div>
+        <img
+          onclick="Redirect()"
+          src="https://static-00.iconduck.com/assets.00/smile-emoji-2048x2048-0zqwk4yb.png"
+          class="w-36"
+        />
+        <p class="text-orange-300 font-extrabold text-center text-xl">
+          Click On Me
+        </p>
+      </div>
+    </div>
+    <script>
+      function Redirect() {
+        location.href = "/main.html";
+      }
+      //   setTimeout(() => {
+      //     document.location.reload("http://127.0.0.1:5500/joke-api/main.html");
+      //   }, 3000);
+    </script>
+  </body>
+</html>

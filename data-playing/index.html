@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex justify-center">
+      <div class="bg-gray-200 w-1/2">
+        <div class="flex flex-col">
+          <h1 class="text-center bg-red-200">Class11</h1>
+          <div class="flex">
+            <div class="flex gap-5 w-1/2 text-center">
+              <div class="flex flex-col border border-black">
+                <div class="1/6">topper</div>
+                <div id="topper">Marks=</div>
+              </div>
+
+              <div class="1/6">maths</div>
+              <div class="1/6">science</div>
+              <div class="1/6">english</div>
+              <div class="1/6">history</div>
+              <div class="1/6">geograpy</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 bg-teal-200 pr-6 pt-4">
+          <div class="w-1/6">Roll. No.</div>
+          <div class="w-1/4">Name</div>
+          <div class="w-1/2">
+            <div class="flex w-full pr-3">
+              <div class="w-1/5">maths</div>
+              <div class="w-1/5">science</div>
+              <div class="w-1/5">english</div>
+              <div class="w-1/5">history</div>
+              <div class="w-1/5">geograpy</div>
+            </div>
+          </div>
+          <div class="w-1/12 pr-4">Total(%)</div>
+        </div>
+        <div id="class11" class="pr-4"></div>
+      </div>
+      <div class="bg-gray-500 w-1/2">
+        <div class="flex flex-col">
+          <h1 class="text-center bg-red-200">Class12</h1>
+          <div class="flex">
+            <div class="flex gap-5 w-1/2 text-center">
+              <div class="flex flex-col">
+                <div class="1/6">topper</div>
+                <div id="topper2">Marks=</div>
+              </div>
+
+              <div class="1/6">maths</div>
+              <div class="1/6">science</div>
+              <div class="1/6">english</div>
+              <div class="1/6">history</div>
+              <div class="1/6">geograpy</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 bg-teal-200 pl-6 pt-4">
+          <div class="w-1/6">Roll. No.</div>
+          <div class="w-1/4">Name</div>
+          <div class="w-1/2">
+            <div class="flex w-full pr-3">
+              <div class="w-1/5">maths</div>
+              <div class="w-1/5">science</div>
+              <div class="w-1/5">english</div>
+              <div class="w-1/5">history</div>
+              <div class="w-1/5">geograpy</div>
+            </div>
+          </div>
+          <div class="w-1/12">Total(%)</div>
+        </div>
+        <div id="class12" class=""></div>
+      </div>
+    </div>
+
+    <script>
+      fetchfunc();
+      async function fetchfunc() {
+        await fetch("MOCK_DATA.json").then((res) => {
+          console.log(res.json());
+          res.json().then((data) => {
+            let arr = [];
+            let topper = "";
+            let topper_mark = 0;
+            data.forEach((student) => {
+              //console.log(student);
+              let sum = 0;
+              student.marks.forEach((x) => {
+                sum += x.value;
+              });
+              if (sum > topper_mark) {
+                topper_mark = sum;
+                topper = student;
+              }
+              var t = document.getElementById("topper");
+              var t2 = document.getElementById("topper2");
+              if (student.class === 11) {
+                t.innerHTML = topper_mark / 5;
+              } else if (student.class === 12) {
+                t2.innerHTML = topper_mark / 5;
+              }
+              //console.log(student.marks[1].value);
+              let math_mark = 0;
+              if (student.marks[1].value > math_mark) {
+                math_mark = student.marks[1].value;
+              }
+              console.log(math_mark);
+            });
+            for (let i = 0; i <= data.length; i++) {
+              let m1 = ``;
+              let sum = 0;
+              data[i].marks.forEach((m) => {
+                m1 += `<div class="w-1/5 text-center">${m.value}</div>`;
+                sum = sum + m.value;
+              });
+
+              if (data[i].class === 11) {
+                var t1 = `<div class="flex bg-blue-200">
+                <div class="w-1/6  pt-5">${data[i].rollNumber}</div>
+                <div class="w-1/4  pt-5">${data[i].name}</div>
+                <div class="w-1/2">
+                    <div class="flex  p-4">
+                      ${m1}
+                    </div>
+                  </div>
+                  <div class="w-1/12  pt-4">${sum / 5}</div>
+              </div>`;
+                var c1 = document.getElementById("class11");
+                c1.innerHTML += t1;
+              } else if (data[i].class === 12) {
+                var t2 = `<div class="flex bg-blue-200 pl-6">
+                <div class="w-1/6  pt-5">${data[i].rollNumber}</div>
+                <div class="w-1/4  pt-5">${data[i].name}</div>
+                <div class="w-1/2">
+                  <div class="flex  p-4">
+                    ${m1}
+                  </div>
+                </div>
+                <div class="w-1/12 pt-4">${sum / 5}</div>
+              </div>`;
+                var c2 = document.getElementById("class12");
+                c2.innerHTML += t2;
+              }
+            }
+            console.log(arr, "njrgir");
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

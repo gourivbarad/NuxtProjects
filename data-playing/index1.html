@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      tr:nth-child(odd) {
+        background-color: rgb(250, 250, 250);
+      }
+      tr:nth-child(even) {
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col justify-center items-center">
+      <div class="text-4xl p-1 w-full text-center">Class 11</div>
+      <div class="flex w-full justify-center items-center">
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Class Topper</div>
+          <div id="t_stud"></div>
+          <div id="t_Marks"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Maths Topper</div>
+          <div id="t_maths"></div>
+          <div id="maths_marks"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Science Topper</div>
+          <div id="t_sci"></div>
+          <div id="sci_marks"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">English Topper</div>
+          <div id="t_eng"></div>
+          <div id="eng_marks"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">History Topper</div>
+          <div id="t_his"></div>
+          <div id="his_marks"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Geography Topper</div>
+          <div id="t_geo"></div>
+          <div id="geo_marks"></div>
+        </div>
+      </div>
+      <table id="class11" class="" style="width: 100%">
+        <tr class="text-center border border-black font-bold">
+          <td>Roll No.</td>
+          <td>Name</td>
+          <td>Maths</td>
+          <td>Science</td>
+          <td>English</td>
+          <td>History</td>
+          <td>Geography</td>
+          <td>Total(%)</td>
+        </tr>
+      </table>
+
+      <br />
+
+      <div class="text-4xl p-1 w-full text-center">Class 12</div>
+      <div class="flex w-full justify-center items-center">
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Class Topper</div>
+          <div id="t_stud12"></div>
+          <div id="t_Marks12"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Maths Topper</div>
+          <div id="t_maths12"></div>
+          <div id="maths_marks12"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Science Topper</div>
+          <div id="t_sci12"></div>
+          <div id="sci_marks12"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">English Topper</div>
+          <div id="t_eng12"></div>
+          <div id="eng_marks12"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl m-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">History Topper</div>
+          <div id="t_his12"></div>
+          <div id="his_marks12"></div>
+        </div>
+        <div
+          class="flex flex-col justify-center items-center rounded-xl mr-2 bg-cyan-100 w-full h-auto"
+        >
+          <div class="font-bold">Geography Topper</div>
+          <div id="t_geo12"></div>
+          <div id="geo_marks12"></div>
+        </div>
+      </div>
+      <table id="class12" class="" style="width: 100%">
+        <tr class="text-center border border-black font-bold">
+          <td>Roll No.</td>
+          <td>Name</td>
+          <td>Maths</td>
+          <td>Science</td>
+          <td>English</td>
+          <td>History</td>
+          <td>Geography</td>
+          <td>Total(%)</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      fetch("MOCK_DATA.json").then((res) => {
+        res.json().then((data) => {
+          let t11 = [];
+          let stud11 = [];
+          let max11 = 0;
+          let topper_stud11 = "";
+          /*let t_maths = 0;
+          let t_maths_stud = "";
+          let t_science = 0;
+          let t_science_stud = "";
+          let t_english = 0;
+          let t_english_stud = "";
+          let t_history = 0;
+          let t_history_stud = "";
+          let t_geography = 0;
+          let t_geography_stud = "";*/
+
+          let t12 = [];
+          let stud12 = [];
+          let max12 = 0;
+          let topper_stud12 = "";
+          /*let t_maths12 = 0;
+          let t_maths_stud12 = "";
+          let t_science12 = 0;
+          let t_science_stud12 = "";
+          let t_english12 = 0;
+          let t_english_stud12 = "";
+          let t_history12 = 0;
+          let t_history_stud12 = "";
+          let t_geography12 = 0;
+          let t_geography_stud12 = "";*/
+
+          data.forEach((student, index) => {
+            if (student.class === 11) {
+              stud11.push(student);
+              //console.log(index, "bhfhbudfhju");
+              let sum1 = 0;
+              student.marks.forEach((m) => {
+                sum1 += m.value;
+              });
+              t11.push(sum1 / 5);
+              //console.log(t11);
+              t11.forEach((i) => {
+                if (max11 < i) {
+                  max11 = i;
+                  topper_stud11 = student;
+                }
+              });
+
+              var c11 = `<tr class="text-center border border-black" ><td>${
+                student.rollNumber
+              }</td>
+                <td>${student.name}</td>
+                <td>${student.marks[0].value}</td>
+                <td>${student.marks[1].value}</td>
+                <td>${student.marks[2].value}</td>
+                <td>${student.marks[3].value}</td>
+                <td>${student.marks[4].value}</td>
+                <td>${sum1 / 5}</td></tr>`;
+
+              var table11 = document.getElementById("class11");
+              table11.innerHTML += c11;
+
+              /*for (let maths = 0; maths < stud11.length; maths++) {
+                if (t_maths < stud11[maths].marks[0].value) {
+                  t_maths = stud11[maths].marks[0].value;
+                  t_maths_stud = student;
+                }
+              }
+
+              for (let sci = 0; sci < stud11.length; sci++) {
+                if (t_science < stud11[sci].marks[1].value) {
+                  t_science = stud11[sci].marks[1].value;
+                  t_science_stud = student;
+                }
+              }
+
+              for (let eng = 0; eng < stud11.length; eng++) {
+                if (t_english < stud11[eng].marks[2].value) {
+                  t_english = stud11[eng].marks[2].value;
+                  t_english_stud = student;
+                }
+              }
+
+              for (let his = 0; his < stud11.length; his++) {
+                if (t_history < stud11[his].marks[3].value) {
+                  t_history = stud11[his].marks[3].value;
+                  t_history_stud = student;
+                }
+              }
+
+              for (let geo = 0; geo < stud11.length; geo++) {
+                if (t_geography < stud11[geo].marks[4].value) {
+                  t_geography = stud11[geo].marks[4].value;
+                  t_geography_stud = student;
+                }
+              }*/
+            } else if (student.class === 12) {
+              stud12.push(student);
+              let sum2 = 0;
+              student.marks.forEach((m) => {
+                sum2 += m.value;
+              });
+              t12.push(sum2 / 5);
+              //console.log(t12);
+              t12.forEach((i) => {
+                if (max12 < i) {
+                  max12 = i;
+                  topper_stud12 = student;
+                }
+              });
+
+              var c12 = `<tr class="text-center border border-black"><td>${
+                student.rollNumber
+              }</td>
+                <td>${student.name}</td>
+                <td>${student.marks[0].value}</td>
+                <td>${student.marks[1].value}</td>
+                <td>${student.marks[2].value}</td>
+                <td>${student.marks[3].value}</td>
+                <td>${student.marks[4].value}</td>
+                <td>${sum2 / 5}</td></tr>`;
+
+              var table12 = document.getElementById("class12");
+              table12.innerHTML += c12;
+
+              /*for (let maths = 0; maths < stud12.length; maths++) {
+                if (t_maths12 < stud12[maths].marks[0].value) {
+                  t_maths12 = stud12[maths].marks[0].value;
+                  t_maths_stud12 = student;
+                }
+              }
+
+              for (let sci = 0; sci < stud12.length; sci++) {
+                if (t_science12 < stud12[sci].marks[1].value) {
+                  t_science12 = stud12[sci].marks[1].value;
+                  t_science_stud12 = student;
+                }
+              }
+
+              for (let eng = 0; eng < stud12.length; eng++) {
+                if (t_english12 < stud12[eng].marks[2].value) {
+                  t_english12 = stud12[eng].marks[2].value;
+                  t_english_stud12 = student;
+                }
+              }
+
+              for (let his = 0; his < stud12.length; his++) {
+                if (t_history12 < stud12[his].marks[3].value) {
+                  t_history12 = stud12[his].marks[3].value;
+                  t_history_stud12 = student;
+                }
+              }
+
+              for (let geo = 0; geo < stud12.length; geo++) {
+                if (t_geography12 < stud12[geo].marks[4].value) {
+                  t_geography12 = stud12[geo].marks[4].value;
+                  t_geography_stud12 = student;
+                }
+              }*/
+            }
+          });
+
+          function topper(stud11, index) {
+            let topper_marks = 0;
+            let topper_std = "";
+            for (let p = 0; p < stud11.length; p++) {
+              if (topper_marks < stud11[p].marks[index].value) {
+                topper_marks = stud11[p].marks[index].value;
+                topper_std = stud11[p];
+              }
+            }
+
+            return [topper_marks, topper_std];
+          }
+
+          let [maths_topper, stud_m] = topper(stud11, 0);
+          let [sci_topper, stud_s] = topper(stud11, 1);
+          let [eng_topper, stud_e] = topper(stud11, 2);
+          let [his_topper, stud_h] = topper(stud11, 3);
+          let [geo_topper, stud_g] = topper(stud11, 4);
+
+          let [maths_topper12, stud_m12] = topper(stud12, 0);
+          let [sci_topper12, stud_s12] = topper(stud12, 1);
+          let [eng_topper12, stud_e12] = topper(stud12, 2);
+          let [his_topper12, stud_h12] = topper(stud12, 3);
+          let [geo_topper12, stud_g12] = topper(stud12, 4);
+
+          //class11
+          var class11_topper = document.getElementById("t_stud");
+          class11_topper.innerHTML = topper_stud11.name;
+
+          var class11_topper_marks = document.getElementById("t_Marks");
+          class11_topper_marks.innerHTML = max11;
+
+          var class11_maths_topper = document.getElementById("t_maths");
+          class11_maths_topper.innerHTML = stud_m.name;
+
+          var class11_maths_topper_marks =
+            document.getElementById("maths_marks");
+          class11_maths_topper_marks.innerHTML = maths_topper;
+
+          var class11_sci_topper = document.getElementById("t_sci");
+          class11_sci_topper.innerHTML = stud_s.name;
+
+          var class11_sci_topper_marks = document.getElementById("sci_marks");
+          class11_sci_topper_marks.innerHTML = sci_topper;
+
+          var class11_eng_topper = document.getElementById("t_eng");
+          class11_eng_topper.innerHTML = stud_e.name;
+
+          var class11_eng_topper_marks = document.getElementById("eng_marks");
+          class11_eng_topper_marks.innerHTML = eng_topper;
+
+          var class11_his_topper = document.getElementById("t_his");
+          class11_his_topper.innerHTML = stud_h.name;
+
+          var class11_his_topper_marks = document.getElementById("his_marks");
+          class11_his_topper_marks.innerHTML = his_topper;
+
+          var class11_geo_topper = document.getElementById("t_geo");
+          class11_geo_topper.innerHTML = stud_g.name;
+
+          var class11_geo_topper_marks = document.getElementById("geo_marks");
+          class11_geo_topper_marks.innerHTML = geo_topper;
+
+          //class12
+          var class12_topper = document.getElementById("t_stud12");
+          class12_topper.innerHTML = topper_stud12.name;
+
+          var class12_topper_marks = document.getElementById("t_Marks12");
+          class12_topper_marks.innerHTML = max12;
+
+          var class12_maths_topper = document.getElementById("t_maths12");
+          class12_maths_topper.innerHTML = stud_m12.name;
+
+          var class12_maths_topper_marks =
+            document.getElementById("maths_marks12");
+          class12_maths_topper_marks.innerHTML = maths_topper12;
+
+          var class12_sci_topper = document.getElementById("t_sci12");
+          class12_sci_topper.innerHTML = stud_s12.name;
+
+          var class12_sci_topper_marks = document.getElementById("sci_marks12");
+          class12_sci_topper_marks.innerHTML = sci_topper12;
+
+          var class12_eng_topper = document.getElementById("t_eng12");
+          class12_eng_topper.innerHTML = stud_e12.name;
+
+          var class12_eng_topper_marks = document.getElementById("eng_marks12");
+          class12_eng_topper_marks.innerHTML = eng_topper12;
+
+          var class12_his_topper = document.getElementById("t_his12");
+          class12_his_topper.innerHTML = stud_h12.name;
+
+          var class12_his_topper_marks = document.getElementById("his_marks12");
+          class12_his_topper_marks.innerHTML = his_topper12;
+
+          var class12_geo_topper = document.getElementById("t_geo12");
+          class12_geo_topper.innerHTML = stud_g12.name;
+
+          var class12_geo_topper_marks = document.getElementById("geo_marks12");
+          class12_geo_topper_marks.innerHTML = geo_topper12;
+
+          /*console.log(stud_m, "maths");
+          console.log(maths_topper, "maths");
+
+          console.log(stud_s, "sci");
+          console.log(sci_topper, "sci");
+
+          console.log(stud_e, "eng");
+          console.log(eng_topper, "eng");
+
+          console.log(stud_h, "his");
+          console.log(his_topper, "his");
+
+          console.log(stud_g, "geo");
+          console.log(geo_topper, "geo");
+
+          console.log(stud_m12, "maths");
+          console.log(maths_topper12, "maths");
+
+          console.log(stud_s12, "sci");
+          console.log(sci_topper12, "sci");
+
+          console.log(stud_e12, "eng");
+          console.log(eng_topper12, "eng");
+
+          console.log(stud_h12, "his");
+          console.log(his_topper12, "his");
+
+          console.log(stud_g12, "geo");
+          console.log(geo_topper12, "geo");
+
+          console.log(stud11);
+          console.log(topper_stud11);
+          console.log(max11, "class11");
+
+          console.log(stud_m, "maths");
+          console.log(maths_topper, "maths");
+
+          console.log(topper_std);
+          console.log(topper_marks);
+
+          console.log(topper_std);
+          console.log(topper_marks);
+
+          console.log(topper_std);
+          console.log(topper_marks);
+
+          console.log(t_maths_stud);
+          console.log(t_maths, "maths");
+          console.log(t_science_stud);
+          console.log(t_science, "science");
+          console.log(t_english_stud);
+          console.log(t_english, "english");
+          console.log(t_history_stud);
+          console.log(t_history, "history");
+          console.log(t_geography_stud);
+          console.log(t_geography, "geography");
+          console.log(topper_stud12);
+          console.log(max12, "class12");
+          console.log(t_maths_stud12);
+          console.log(t_maths12, "maths");
+          console.log(t_science_stud12);
+          console.log(t_science12, "science");
+          console.log(t_english_stud12);
+          console.log(t_english12, "english");
+          console.log(t_history_stud12);
+          console.log(t_history12, "history");
+          console.log(t_geography_stud12);
+          console.log(t_geography12, "geography");*/
+        });
+      });
+    </script>
+  </body>
+</html>

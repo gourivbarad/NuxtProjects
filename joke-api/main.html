@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Randam Jokes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&family=Inter:wght@200;300;500&family=Oswald:wght@200&family=Roboto+Slab&display=swap" rel="stylesheet">
+  <body>
+    <div id="main" class="bg-black h-screen flex justify-center items-center">
+        <div
+          class="bg-yellow-500  lg:h-2/4 lg:w-2/4 w-80 flex flex-col justify-center rounded-lg"
+        >
+        <div><center><img src="https://www.pngmart.com/files/13/Laughter-Emoji-PNG-Photos.png" class="w-28 "><center></div>
+        <div id="main-2" style="font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: 'Inter', sans-serif;
+        font-family: 'Oswald', sans-serif;
+        font-family: 'Roboto Slab', serif;" class=" w-auto h-40 lg:m-5 shadow-2xl m-4 text-center flex justify-center items-center"></div>
+        <div class=" w-auto h-7- m-3 ">
+          <center><button onclick="myfunc()" class="bg-yellow-500 border border-yellow-400 p-3 text-lg font-semibold rounded-full shadow-2xl">Get Random Jokes</button><center>
+        </div>
+        </div>
+      </div>
+
+      <script>
+        function myfunc(){
+            // console.log("object");
+            var d=document.getElementById("main-2")
+            fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then((r)=>{
+                // console.log(r.json())
+                r.json().then((data)=>{
+                    console.log(data)
+                    // data.forEach((jokes)=>{
+                        d.innerHTML=data.joke;
+                    })
+                })
+        
+        }
+    //     setTimeout(() => {
+    //     document.location.reload("http://127.0.0.1:5500/joke-api/main.html");
+    //   }, 3000);
+      </script>
+  </body>
+</html>

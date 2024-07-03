@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dictionary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div class="flex h-screen w-screen items-center justify-center">
+      <div
+        class="flex h-auto w-96 flex-col items-center justify-center border-8 border-blue-700 rounded-xl bg-white p-7 lg:w-7/12"
+      >
+        <div class="flex w-72 flex-row items-center justify-between lg:w-full">
+          <div>
+            <input id="text"
+              type="text"
+              placeholder="Search"
+              class="border-0 border-b-2 border-blue-950 p-2 lg:w-72 w-44 font-serif lg:text-3xl text-2xl font-bold"
+            />
+          </div>
+          <div>
+            <button onclick="myfuction()"
+              class="w-24 rounded bg-blue-200 p-2 lg:w-40 font-sans lg:text-2xl text-xl shadow-md"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        <div
+          id="main"
+          class="mt-4 flex w-full flex-col items-center justify-center"
+        >
+          <div class="flex w-full flex-row items-center justify-start">
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-12 w-12 rounded-full hidden"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+                /></svg></span>
+            <p id="word" class="p-4 font-serif text-4xl font-bold"></p>
+          </div>
+          <div id="noun"
+            class="w-full font-mono text-xl font-medium italic text-gray-500">
+          </div>
+          <div id="mean" class="w-full font-sans text-2xl font-medium">
+          </div>
+          <div id="eg" class="w-full font-sans text-2xl font-medium text-gray-600">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function myfuction(){
+        var i = document.getElementById("text");
+        var s = document.getElementById("search");
+        var w = document.getElementById("word");
+        var n=document.getElementById("noun");
+        var m=document.getElementById("mean");
+        var e=document.getElementById("eg");
+
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+i.value).then(
+          (r) => {
+            r.json().then((data)=>{
+              // w.innerHTML=data[0].word;
+              // n.innerHTML=data[2].meanings[0].partOfSpeech;
+              // data.forEach(record => {
+              //   console.log(record)
+              // });
+              //console.log(data[0].meanings[0].partOfSpeech)
+              data.forEach((words) => {
+                console.log(words)
+                  w.innerHTML=words.word;
+                  n.innerHTML=words.meanings[0].partOfSpeech;
+                  m.innerHTML=words.meanings[0].definitions[0].definition;
+                  n.innerHTML=words.meanings[1].partOfSpeech;
+                  m.innerHTML=words.meanings[1].definitions[0].definition;
+                  e.innerHTML=words.meanings[1].definitions[0].example;
+                
+                // <audio controls hidden>
+                // <source src="${words.phonetics[1].audio}" type="audio/ogg">
+                // </audio>
+              });
+            })
+          }
+        );
+      }
+        
+      
+    </script>
+  </body>
+</html>

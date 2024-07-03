@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&family=Inter:wght@200;300;500&family=Merriweather:ital,wght@1,300&family=Oswald:wght@200&family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&family=Inter:wght@200;300;500&family=Josefin+Sans:ital,wght@1,300&family=Merriweather:ital,wght@1,300&family=Oswald:wght@200&family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&family=Inter:wght@200;300;500&family=Josefin+Sans:ital,wght@1,300&family=Merriweather:ital,wght@1,300&family=Oswald:wght@200&family=Poppins:wght@300&family=Roboto+Slab&family=Yanone+Kaffeesatz:wght@300&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&family=Inter:wght@200;300;500&family=Josefin+Sans:ital,wght@1,300&family=Merriweather:ital,wght@1,300&family=Oswald:wght@200&family=Poppins:wght@300&family=Roboto+Slab&family=Yanone+Kaffeesatz:wght@300&display=swap"
+    rel="stylesheet"
+  />
+
+  <body>
+    <div
+      id="main"
+      style="display: flex; flex-flow: row wrap; justify-content: center"
+    ></div>
+    <script>
+      var d = document.getElementById("main");
+      fetch("https://pokeapi.co/api/v2/pokemon?limit=90").then((r) => {
+        //console.log(r.json());
+        r.json().then((data) => {
+          console.log(data);
+          data.results.forEach((poke) => {
+            fetch(poke.url).then((p) => {
+              p.json().then((pokemon) => {
+                console.log(pokemon.abilities[0].ability.name);
+                var t = `
+                    <div class="bg-gray-700 h-auto w-auto rounded p-2 flex flex-col m-4 drop-shadow-lg">
+                      <div><img src="${pokemon.sprites.front_default}" class="bg-gray-400 w-52"></div>
+                      <div class="mt-2 mb-2 text-white text-3xl " style="font-family: 'Bricolage Grotesque', sans-serif;
+                      font-family: 'Inter', sans-serif;
+                      font-family: 'Merriweather', serif;
+                      font-family: 'Oswald', sans-serif;
+                      font-family: 'Roboto Slab', serif;">${poke.name}</div>
+                      
+                      <div class="flex ">
+                        <div class="text-md   text-white mr-4" style="font-family: 'Bricolage Grotesque', sans-serif;
+                        font-family: 'Inter', sans-serif;
+                        font-family: 'Josefin Sans', sans-serif;
+                        font-family: 'Merriweather', serif;
+                        font-family: 'Oswald', sans-serif;
+                        font-family: 'Poppins', sans-serif;
+                        font-family: 'Roboto Slab', serif;
+                        font-family: 'Yanone Kaffeesatz', sans-serif;">Weight </div>
+                        <div class="w-auto h-6 bg-green-500 rounded-sm mr-3 text-xs p-1">${pokemon.weight}</div>
+                      </div>
+                      <div class="text-md  ml-0 text-white m-1" style="font-family: 'Bricolage Grotesque', sans-serif;
+                      font-family: 'Inter', sans-serif;
+                      font-family: 'Josefin Sans', sans-serif;
+                      font-family: 'Merriweather', serif;
+                      font-family: 'Oswald', sans-serif;
+                      font-family: 'Poppins', sans-serif;
+                      font-family: 'Roboto Slab', serif;
+                      font-family: 'Yanone Kaffeesatz', sans-serif;">Types</div>
+                      <div class="flex" style="font-family: 'Bricolage Grotesque', sans-serif;
+                      font-family: 'Inter', sans-serif;
+                      font-family: 'Josefin Sans', sans-serif;
+                      font-family: 'Merriweather', serif;
+                      font-family: 'Oswald', sans-serif;
+                      font-family: 'Roboto Slab', serif;">
+                        <div class="w-auto bg-green-500 rounded-sm mr-3 text-xs p-1">${pokemon.types[0].type.name}</div>
+                        <div class="w-auto bg-red-300 rounded-sm mr-3 text-xs p-1">${pokemon.types[1].type.name}</div>
+                      </div>
+                      <div class="text-md  ml-0 text-white m-1" style="font-family: 'Bricolage Grotesque', sans-serif;">Abilities</div>
+                      <div class="flex" style="font-family: 'Bricolage Grotesque', sans-serif;">
+                        <div class="w-auto bg-purple-200 rounded-sm mr-3 text-xs p-1">${pokemon.abilities[0].ability.name}</div>
+                        <div class="w-auto bg-blue-500 rounded-sm mr-3 text-xs p-1">${pokemon.abilities[1].ability.name}</div>
+                      </div>
+                    </div>
+                   `;
+                d.innerHTML = d.innerHTML + t;
+              });
+            });
+          });
+        });
+      });
+      //function abilities() {
+      //  for (let i = 1; i <= 150; i++) {
+      //    fetch("https://pokeapi.co/api/v2/pokemon/" + i).then((r) => {
+      //      r.json().then((data) => {
+      //        console.log(data);
+      //        data.abilities.forEach((r) => {
+      //          var y = `<div class="flex">
+      //              <div class="w-10 bg-green-500 rounded-sm mr-3">${r.ability.name}</div>
+      //<div class="w-10 bg-green-500 rounded-sm mr-3">${pokemon.abilities.ability.name}</div>
+      //            </div>`;
+      //        });
+      //      });
+      //    });
+      //  }
+      //}
+    </script>
+  </body>
+</html>
